@@ -22,9 +22,11 @@ public class TestDistributeLock implements Watcher {
     private static final int SESSION_TIMEOUT = 10000;
     private static final String GROUP_PATH = "/disLocks";
     private static final String SUB_PATH = "/disLocks/sub";
-    private static final String CONNECTION_STRING = "127.0.0.1:2181";
+    private static final String CONNECTION_STRING = "127.0.0.1:2182";
 
     private static final int THREAD_NUM = 10;
+
+    private int i = 0;
     //确保连接zk成功；
     private CountDownLatch connectedSemaphore = new CountDownLatch(1);
     //确保所有线程运行结束；
@@ -124,6 +126,7 @@ public class TestDistributeLock implements Watcher {
         }
         System.out.println(PREFIX_OF_THREAD+"得到锁，开始执行");
         Thread.sleep(2000);
+        i++;
         System.out.println(PREFIX_OF_THREAD+"删除本节点："+selfPath);
         zk.delete(this.selfPath,-1);
         releaseConnection();
