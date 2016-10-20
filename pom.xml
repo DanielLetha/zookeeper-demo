@@ -12,6 +12,7 @@
         <module>groupService</module>
         <module>nameService</module>
         <module>distSyncService</module>
+        <module>distributeLock</module>
     </modules>
     <properties>
         <zookeeper.version>3.5.2-alpha</zookeeper.version>

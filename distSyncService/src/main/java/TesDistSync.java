@@ -1,5 +1,6 @@
 import org.apache.zookeeper.*;
 import org.apache.zookeeper.data.Stat;
+import org.apache.zookeeper.server.ZKDatabase;
 
 import java.io.IOException;
 
@@ -38,6 +39,7 @@ public class TesDistSync {
         }
         //模拟节点同步
         zk1.delete("/sync",-1);
+
 
         System.out.println(zk2.getChildren("/sync",true));
 
