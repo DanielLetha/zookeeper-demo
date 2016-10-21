@@ -170,6 +170,7 @@ public class TestNewDistributeLock implements Watcher {
      * @throws InterruptedException
      */
     public boolean checkMinPath() throws KeeperException, InterruptedException {
+
         List<String> subNodes = zk.getChildren(GROUP_PATH, false);
         Collections.sort(subNodes);
         int index = subNodes.indexOf(selfPath.substring(GROUP_PATH.length() + 1));
@@ -211,6 +212,7 @@ public class TestNewDistributeLock implements Watcher {
             if (Event.EventType.None == eventType) {
                 System.out.println(PREFIX_OF_THREAD + "成功连接上ZK服务器");
                 connectedSemaphore.countDown();
+                //发生临时有序节点被删除
             } else if (event.getType() == Event.EventType.NodeDeleted && event.getPath().equals(waitPath)) {
                 System.out.println(PREFIX_OF_THREAD + "收到情报，排我前面的家伙已挂，我是不是可以出山了？");
                 try {
