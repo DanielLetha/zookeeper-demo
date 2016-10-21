@@ -7,13 +7,13 @@ import java.util.List;
 import java.util.concurrent.CountDownLatch;
 
 /**
- * @Brief : 临时有序节点的分布式锁实现
+ * @Brief :  ${用途}
  * @Author: liangfei/liangfei@simpletour.com
  * @Date :  2016/10/20 14:06
  * @Since ： ${VERSION}
- * @Remark: 标准的基于zookeeper临时有序节点的分布式锁实现，在父锁节点（/disLocks）上调用 getChildren( ) ，设置监视标志为false。 (为了避免“羊群效应”).
+ * @Remark: ${Remark}
  */
-public class TestEmphDistributeLock implements Watcher {
+public class TestNewDistributeLock implements Watcher {
     private int threadId;
     private ZooKeeper zk = null;
     private String selfPath;
@@ -54,7 +54,7 @@ public class TestEmphDistributeLock implements Watcher {
                 @Override
                 public void run() {
                     try {
-                        TestEmphDistributeLock dc = new TestEmphDistributeLock(threadId);
+                        TestNewDistributeLock dc = new TestNewDistributeLock(threadId);
                         dc.createConnection(CONNECTION_STRING, SESSION_TIMEOUT);
                         synchronized (threadSemaphore) {
                             dc.getLock();
@@ -71,7 +71,7 @@ public class TestEmphDistributeLock implements Watcher {
     }
 
 
-    public TestEmphDistributeLock(int threadId) {
+    public TestNewDistributeLock(int threadId) {
         this.threadId = threadId;
         PREFIX_OF_THREAD = "[第" + threadId + "个线程]";
     }
